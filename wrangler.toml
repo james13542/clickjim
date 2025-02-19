@@ -1,5 +1,4 @@
 name = "worker1"
 main = "dist/index.js"
-route = "clickjim.com/*"
 
 # other configuration options…
