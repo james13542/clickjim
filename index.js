@@ -1,6 +1,6 @@
 addEventListener("fetch", event => {
   event.respondWith(
-    new Response("<h1>Hello, World!</h1>", {
+    new Response(content.html, {
       headers: { "content-type": "text/html" },
     })
   );
