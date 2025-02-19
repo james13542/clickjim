@@ -1,3 +1,8 @@
-"scripts": {
-  "build": "esbuild index.js --bundle --loader:.html=text --outfile=dist/index.js"
+{
+  "name": "worker1",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "esbuild index.js --bundle --loader:.html=text --outfile=dist/index.js"
+  },
+  "dependencies": {}
 }
