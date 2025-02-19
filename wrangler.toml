@@ -1,0 +1,3 @@
+name = "worker1"
+main = "dist/index.js"
+# other configuration options…
