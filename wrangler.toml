@@ -1,6 +1,7 @@
 name  = "worker1"
 main  = "dist/index.js"
 route = "clickjim.com/*"
+workers_dev = true
 
 # other configuration options…
 
