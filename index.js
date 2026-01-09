@@ -8,24 +8,20 @@ addEventListener("fetch", (event) => {
 async function handle(request) {
   const url = new URL(request.url);
 
-  // Serve CSS directly if requested (optional but useful)
+  // Optional: allow /style.css to be fetched directly
   if (url.pathname === "/style.css") {
     return new Response(cssContent, {
-      headers: {
-        "Content-Type": "text/css; charset=utf-8",
-        "Cache-Control": "public, max-age=3600",
-      },
+      headers: { "Content-Type": "text/css; charset=utf-8" },
     });
   }
 
-  // Inject CSS into <head> regardless of whether a <link> exists
-  const html =
-    htmlContent.replace(/<\/head>/i, `<style>${cssContent}</style></head>`);
+  // Always inject CSS
+  const html = htmlContent.replace(
+    /<\/head>/i,
+    `<style>${cssContent}</style></head>`
+  );
 
   return new Response(html, {
-    headers: {
-      "Content-Type": "text/html; charset=utf-8",
-      "Cache-Control": "no-store",
-    },
+    headers: { "Content-Type": "text/html; charset=utf-8" },
   });
 }
