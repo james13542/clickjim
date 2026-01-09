@@ -42,15 +42,18 @@
     const url = new URL(request.url);
     if (url.pathname === "/style.css") {
       return new Response(style_default, {
-        headers: { "Content-Type": "text/css; charset=utf-8" }
+        headers: {
+          "Content-Type": "text/css; charset=utf-8",
+          "Cache-Control": "public, max-age=3600"
+        }
       });
     }
-    const html = content_default.replace(
-      /<\/head>/i,
-      `<style>${style_default}</style></head>`
-    );
+    const html = content_default.replace(/<\/head>/i, `<style>${style_default}</style></head>`);
     return new Response(html, {
-      headers: { "Content-Type": "text/html; charset=utf-8" }
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store"
+      }
     });
   }
 })();
