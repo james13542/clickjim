@@ -36,22 +36,24 @@
 
   // index.js
   addEventListener("fetch", (event) => {
-    const url = new URL(event.request.url);
-    if (url.pathname.endsWith("style.css")) {
-      return event.respondWith(
-        new Response(style_default, {
-          headers: { "Content-Type": "text/css" }
-        })
-      );
-    }
-    const html = content_default.replace(
-      /<link rel="stylesheet" href="style\.css">/i,
-      `<style>${style_default}</style>`
-    );
-    return event.respondWith(
-      new Response(html, {
-        headers: { "Content-Type": "text/html; charset=utf-8" }
-      })
-    );
+    event.respondWith(handle(event.request));
   });
+  async function handle(request) {
+    const url = new URL(request.url);
+    if (url.pathname === "/style.css") {
+      return new Response(style_default, {
+        headers: {
+          "Content-Type": "text/css; charset=utf-8",
+          "Cache-Control": "public, max-age=3600"
+        }
+      });
+    }
+    const html = content_default.replace(/<\/head>/i, `<style>${style_default}</style></head>`);
+    return new Response(html, {
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store"
+      }
+    });
+  }
 })();

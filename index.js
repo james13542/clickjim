@@ -2,25 +2,30 @@ import htmlContent from "./content.html";
 import cssContent from "./style.css";
 
 addEventListener("fetch", (event) => {
-  const url = new URL(event.request.url);
-  // When the browser requests the stylesheet directly, return the raw CSS with the correct content type
-  if (url.pathname.endsWith("style.css")) {
-    return event.respondWith(
-      new Response(cssContent, {
-        headers: { "Content-Type": "text/css" },
-      }),
-    );
-  }
-  // For all other requests, inline the CSS into the HTML and remove the original link element
-  const html = htmlContent
-    .replace(
-      /<link rel="stylesheet" href="style\.css">/i,
-      `<style>${cssContent}</style>`,
-    );
-  return event.respondWith(
-    new Response(html, {
-      headers: { "Content-Type": "text/html; charset=utf-8" },
-    }),
-  );
+  event.respondWith(handle(event.request));
 });
 
+async function handle(request) {
+  const url = new URL(request.url);
+
+  // Serve CSS directly if requested (optional but useful)
+  if (url.pathname === "/style.css") {
+    return new Response(cssContent, {
+      headers: {
+        "Content-Type": "text/css; charset=utf-8",
+        "Cache-Control": "public, max-age=3600",
+      },
+    });
+  }
+
+  // Inject CSS into <head> regardless of whether a <link> exists
+  const html =
+    htmlContent.replace(/<\/head>/i, `<style>${cssContent}</style></head>`);
+
+  return new Response(html, {
+    headers: {
+      "Content-Type": "text/html; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
+}
