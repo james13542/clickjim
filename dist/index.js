@@ -1,38 +1,9 @@
 (() => {
   // content.html
-  var content_default = `<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
-    <!-- Stylesheet reference removed; CSS will be inlined by the Worker. -->
-</head>
-<body>
-    <nav>
-        <ul class="dropdown">
-            <li><a href="#">Menu \u25BC</a>
-                <ul class="dropdown-content">
-                    <li><a href="#editorials">Editorials</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#mods">Mods</a></li>
-                    <li><a href="#prints">Prints</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <div class="container">
-        <h1>Welcome to My Website</h1>
-        <p>Hi, I'm a tech enthusiast with experience in computer hardware engineering and IT support, specializing in networking problem-solving.</p>
-        <p>I have a passion for AI in embedded systems, digital sculpting, and high-performance vehicles. I engine swapped and turbocharged my Miata, so you know I'm cool!</p>
-        <p>I need to make my FR-S have a motor-generator in place of the alternator to get better mpg. I'm also slowly creating a Rust-based multiplayer card game that should be on here eventually.</p>
-        <p>Follow along as I document my projects and interests!</p>
-    </div>
-</body>
-</html>
-`;
+  var content_default = '<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>ClickJim</title>\n    <link rel="stylesheet" href="/style.css">\n</head>\n<body>\n    <nav>\n        <ul class="dropdown">\n            <li><a href="#">Menu \u25BC</a>\n                <ul class="dropdown-content">\n                    <li><a href="#editorials">Editorials</a></li>\n                    <li><a href="#projects">Projects</a></li>\n                    <li><a href="#mods">Mods</a></li>\n                    <li><a href="#prints">Prints</a></li>\n                </ul>\n            </li>\n        </ul>\n    </nav>\n\n    <main class="container">\n        <section class="intro" id="top">\n            <h1>Welcome to ClickJim</h1>\n            <p>Technology, design, and creative development presented with a professional editorial approach.</p>\n        </section>\n\n        <section id="editorials" class="content-section">\n            <h2>Editorials</h2>\n            <p>Long-form stories, deep dives, and thoughtful commentary on innovation, engineering, and digital craftsmanship.</p>\n        </section>\n\n        <section id="projects" class="content-section">\n            <h2>Projects</h2>\n            <p>Hands-on builds and technical experiments, from software and embedded ideas to mechanical problem-solving.</p>\n        </section>\n\n        <section id="mods" class="content-section">\n            <h2>Mods</h2>\n            <p>Performance and customization logs covering practical modifications, improvements, and lessons learned.</p>\n        </section>\n\n        <section id="prints" class="content-section">\n            <h2>Prints</h2>\n            <p>Selected visual work and print-ready creations that combine precision, aesthetics, and storytelling.</p>\n        </section>\n    </main>\n\n    <footer class="business-banner">\n        <div class="banner-content">\n            <strong>ClickJim Studio</strong>\n            <span>Professional editorial, project, and creative services.</span>\n            <a href="mailto:jamesdanielwalter@outlook.com">jamesdanielwalter@outlook.com</a>\n        </div>\n    </footer>\n</body>\n</html>\n';
 
   // style.css
-  var style_default = "body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background-color: #f4f4f4;\n    text-align: center;\n}\n\nnav {\n    background-color: #333;\n    padding: 10px;\n}\n\n.dropdown {\n    list-style-type: none;\n    padding: 0;\n    margin: 0;\n    display: inline-block;\n}\n\n.dropdown li {\n    position: relative;\n    display: inline-block;\n}\n\n.dropdown a {\n    text-decoration: none;\n    color: white;\n    padding: 10px 20px;\n    display: block;\n}\n\n.dropdown-content {\n    display: none;\n    position: absolute;\n    background-color: #444;\n    min-width: 150px;\n    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);\n    z-index: 1;\n}\n\n.dropdown-content li {\n    display: block;\n}\n\n.dropdown-content a {\n    padding: 10px;\n    color: white;\n    display: block;\n}\n\n.dropdown li:hover .dropdown-content {\n    display: block;\n}\n\n.container {\n    max-width: 800px;\n    margin: 50px auto;\n    background: white;\n    padding: 20px;\n    border-radius: 10px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n}\n\nh1 {\n    color: #333;\n}\n\np {\n    color: #667;\n    font-size: 18px;\n    line-height: 1.6;\n}\n";
+  var style_default = "body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    background: linear-gradient(180deg, #f4f6fa 0%, #edf1f7 100%);\n    color: #1f2937;\n    text-align: center;\n}\n\nhtml {\n    scroll-behavior: smooth;\n}\n\nnav {\n    background-color: #1f2937;\n    padding: 12px;\n    position: sticky;\n    top: 0;\n    z-index: 10;\n}\n\n.dropdown {\n    list-style-type: none;\n    padding: 0;\n    margin: 0;\n    display: inline-block;\n}\n\n.dropdown li {\n    position: relative;\n    display: inline-block;\n}\n\n.dropdown a {\n    text-decoration: none;\n    color: #fff;\n    padding: 10px 20px;\n    display: block;\n    font-weight: 600;\n}\n\n.dropdown-content {\n    display: none;\n    position: absolute;\n    background-color: #111827;\n    min-width: 180px;\n    border-radius: 8px;\n    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);\n    z-index: 1;\n}\n\n.dropdown-content li {\n    display: block;\n}\n\n.dropdown-content a {\n    padding: 12px;\n    color: #f9fafb;\n    display: block;\n    text-align: left;\n}\n\n.dropdown-content a:hover {\n    background-color: #374151;\n    border-radius: 8px;\n}\n\n.dropdown li:hover .dropdown-content {\n    display: block;\n}\n\n.container {\n    max-width: 900px;\n    margin: 40px auto 120px;\n    background: #fff;\n    padding: 32px;\n    border-radius: 14px;\n    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);\n}\n\n.intro p {\n    margin-bottom: 28px;\n}\n\n.content-section {\n    padding: 24px 0;\n    border-top: 1px solid #e5e7eb;\n}\n\nh1, h2 {\n    color: #111827;\n}\n\nh2 {\n    margin-bottom: 10px;\n}\n\np {\n    color: #4b5563;\n    font-size: 18px;\n    line-height: 1.6;\n    margin: 0 auto;\n    max-width: 700px;\n}\n\n.business-banner {\n    position: fixed;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: #111827;\n    color: #f9fafb;\n    padding: 12px 16px;\n    border-top: 3px solid #2563eb;\n}\n\n.banner-content {\n    max-width: 1100px;\n    margin: 0 auto;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    gap: 14px;\n    flex-wrap: wrap;\n    font-size: 14px;\n}\n\n.business-banner a {\n    color: #93c5fd;\n    text-decoration: none;\n    font-weight: 700;\n}\n\n.business-banner a:hover {\n    text-decoration: underline;\n}\n";
 
   // index.js
   addEventListener("fetch", (event) => {
