@@ -9,6 +9,15 @@
   addEventListener("fetch", (event) => {
     event.respondWith(handle(event.request));
   });
+  function renderPage(html) {
+    return html.replace(/<\/head>/i, `<style>${style_default}</style></head>`);
+  }
+  function normalizePath(pathname) {
+    if (pathname.length > 1 && pathname.endsWith("/")) {
+      return pathname.slice(0, -1);
+    }
+    return pathname;
+  }
   async function handle(request) {
     const url = new URL(request.url);
     if (url.pathname === "/style.css") {
@@ -19,8 +28,24 @@
         }
       });
     }
-    const html = content_default.replace(/<\/head>/i, `<style>${style_default}</style></head>`);
-    return new Response(html, {
+    const routes = {
+      "/": content_default,
+      "/editorials": editorials_default,
+      "/editorals": editorials_default,
+      "/projects": projects_default,
+      "/mods": mods_default,
+      "/prints": prints_default
+    };
+    const pageHtml = routes[normalizePath(url.pathname)];
+    if (!pageHtml) {
+      return new Response("Not Found", {
+        status: 404,
+        headers: {
+          "Content-Type": "text/plain; charset=utf-8"
+        }
+      });
+    }
+    return new Response(renderPage(pageHtml), {
       headers: {
         "Content-Type": "text/html; charset=utf-8",
         "Cache-Control": "no-store"

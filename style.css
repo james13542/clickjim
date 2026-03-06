@@ -69,6 +69,10 @@ nav {
     display: block;
 }
 
+.dropdown li:focus-within .dropdown-content {
+    display: block;
+}
+
 .container {
     max-width: 900px;
     margin: 40px auto 120px;
