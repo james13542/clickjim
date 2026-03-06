@@ -9,6 +9,10 @@ function renderPage(html) {
   return html.replace(/<\/head>/i, `<style>${cssContent}</style></head>`);
 }
 
+function renderPage(html) {
+  return html.replace(/<\/head>/i, `<style>${cssContent}</style></head>`);
+}
+
 function normalizePath(pathname) {
   if (pathname.length > 1 && pathname.endsWith("/")) {
     return pathname.slice(0, -1);
@@ -16,170 +20,39 @@ function normalizePath(pathname) {
   return pathname;
 }
 
-function getCookie(request, name) {
-  const cookieHeader = request.headers.get("Cookie") || "";
-  const cookies = cookieHeader.split(";").map((cookie) => cookie.trim());
-  for (const cookie of cookies) {
-    if (cookie.startsWith(`${name}=`)) {
-      return decodeURIComponent(cookie.slice(name.length + 1));
-    }
-  }
-  return null;
-}
+async function handle(request) {
+  const url = new URL(request.url);
 
-function authNavHtml(username) {
-  if (username) {
-    return `
-      <div class="auth-controls">
-        <span class="auth-user">Signed in as ${username}</span>
-        <form method="POST" action="/logout" class="logout-form">
-          <button type="submit" class="auth-button">Logout</button>
-        </form>
-      </div>
-    `;
-  }
-
-  return `
-    <div class="auth-controls">
-      <a class="auth-link" href="/login">Login</a>
-    </div>
-  `;
-}
-
-function withAuthNav(pageHtml, username) {
-  return pageHtml.replace("</nav>", `${authNavHtml(username)}</nav>`);
-}
-
-function loginPageHtml(errorMessage = "") {
-  const errorBlock = errorMessage
-    ? `<p class="auth-error">${errorMessage}</p>`
-    : "";
-
-  return `
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | ClickJim</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-    <nav>
-        <a class="home-link" href="/">ClickJim</a>
-        <ul class="dropdown">
-            <li><a href="#">Menu ▼</a>
-                <ul class="dropdown-content">
-                    <li><a href="/editorials">Editorials</a></li>
-                    <li><a href="/projects">Projects</a></li>
-                    <li><a href="/mods">Mods</a></li>
-                    <li><a href="/prints">Prints</a></li>
-                </ul>
-            </li>
-        </ul>
-        <div class="auth-controls">
-          <a class="auth-link" href="/login">Login</a>
-        </div>
-    </nav>
-
-    <main class="container">
-      <section class="content-section single-page auth-section">
-        <h1>Account Login</h1>
-        <p>Create an account or sign in to manage your ClickJim session.</p>
-        ${errorBlock}
-        <form method="POST" action="/login" class="auth-form">
-          <label>
-            Username
-            <input name="username" type="text" required minlength="3" />
-          </label>
-          <label>
-            Password
-            <input name="password" type="password" required minlength="6" />
-          </label>
-          <div class="auth-actions">
-            <button type="submit" name="action" value="login" class="auth-button">Login</button>
-            <button type="submit" name="action" value="register" class="auth-button secondary">Register</button>
-          </div>
-        </form>
-      </section>
-    </main>
-
-    <footer class="business-banner">
-        <div class="banner-content">
-            <strong>ClickJim Studio</strong>
-            <span>Professional editorial, project, and creative services.</span>
-            <a href="mailto:jamesdanielwalter@outlook.com">jamesdanielwalter@outlook.com</a>
-        </div>
-    </footer>
-</body>
-</html>
-`;
-}
-
-async function getCurrentUser(request, env) {
-  const sessionToken = getCookie(request, "clickjim_session");
-  if (!sessionToken) return null;
-
-  const stub = env.AUTH_DO.get(env.AUTH_DO.idFromName("global-auth"));
-  const response = await stub.fetch("https://auth.internal/session", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ token: sessionToken }),
-  });
-
-  if (!response.ok) return null;
-
-  const data = await response.json();
-  return data.username || null;
-}
-
-async function handleLogin(request, env) {
-  const formData = await request.formData();
-  const username = String(formData.get("username") || "").trim();
-  const password = String(formData.get("password") || "");
-  const action = String(formData.get("action") || "login");
-
-  if (!username || !password) {
-    return new Response(renderPage(loginPageHtml("Username and password are required.")), {
-      headers: { "Content-Type": "text/html; charset=utf-8" },
-      status: 400,
+  if (url.pathname === "/style.css") {
+    return new Response(cssContent, {
+      headers: {
+        "Content-Type": "text/css; charset=utf-8",
+        "Cache-Control": "public, max-age=3600",
+      },
     });
   }
 
-  const stub = env.AUTH_DO.get(env.AUTH_DO.idFromName("global-auth"));
+  const routes = {
+    "/": homeHtml,
+    "/editorials": editorialsHtml,
+    "/editorals": editorialsHtml,
+    "/projects": projectsHtml,
+    "/mods": modsHtml,
+    "/prints": printsHtml,
+  };
 
-  if (action === "register") {
-    const registerRes = await stub.fetch("https://auth.internal/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
+  const pageHtml = routes[normalizePath(url.pathname)];
 
-    if (!registerRes.ok) {
-      const msg = await registerRes.text();
-      return new Response(renderPage(loginPageHtml(msg || "Registration failed.")), {
-        headers: { "Content-Type": "text/html; charset=utf-8" },
-        status: 400,
-      });
-    }
-  }
-
-  const loginRes = await stub.fetch("https://auth.internal/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
-  });
-
-  if (!loginRes.ok) {
-    const msg = await loginRes.text();
-    return new Response(renderPage(loginPageHtml(msg || "Login failed.")), {
-      headers: { "Content-Type": "text/html; charset=utf-8" },
-      status: 401,
+  if (!pageHtml) {
+    return new Response("Not Found", {
+      status: 404,
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+      },
     });
   }
 
-  const { token } = await loginRes.json();
-  return new Response(null, {
-    status: 302,
+  return new Response(renderPage(pageHtml), {
     headers: {
       Location: "/",
       "Set-Cookie": `clickjim_session=${encodeURIComponent(token)}; HttpOnly; Secure; Path=/; SameSite=Lax; Max-Age=604800`,

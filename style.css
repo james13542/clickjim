@@ -13,26 +13,10 @@ html {
 
 nav {
     background-color: #1f2937;
-    padding: 12px 18px;
+    padding: 12px;
     position: sticky;
     top: 0;
     z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-
-.home-link {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-}
-
-.home-link:hover {
-    color: #93c5fd;
 }
 
 .dropdown {
@@ -153,93 +137,4 @@ p {
 
 .business-banner a:hover {
     text-decoration: underline;
-}
-
-
-.single-page {
-    border-top: 0;
-    padding-top: 0;
-}
-
-.auth-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.auth-link,
-.auth-button {
-    background: #2563eb;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.auth-link:hover,
-.auth-button:hover {
-    background: #1d4ed8;
-}
-
-.auth-button.secondary {
-    background: #4b5563;
-}
-
-.auth-button.secondary:hover {
-    background: #374151;
-}
-
-.auth-user {
-    color: #e5e7eb;
-    font-size: 14px;
-}
-
-.logout-form {
-    margin: 0;
-}
-
-.auth-section {
-    max-width: 540px;
-    margin: 0 auto;
-}
-
-.auth-form {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 18px;
-}
-
-.auth-form label {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    text-align: left;
-    color: #374151;
-    font-weight: 600;
-}
-
-.auth-form input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-.auth-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.auth-error {
-    color: #b91c1c;
-    font-weight: 700;
-    margin-top: 12px;
 }
