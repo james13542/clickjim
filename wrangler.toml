@@ -3,7 +3,14 @@ main  = "dist/index.js"
 route = "clickjim.com/*"
 workers_dev = true
 compatibility_date = "2026-01-09"
-# other configuration options…
 
 [build]
 command = "npm install && npm run build"
+
+[[durable_objects.bindings]]
+name = "AUTH_DO"
+class_name = "AuthDurableObject"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["AuthDurableObject"]
