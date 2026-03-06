@@ -1,14 +1,28 @@
-import htmlContent from "./content.html";
+import homeHtml from "./content.html";
+import editorialsHtml from "./editorials.html";
+import projectsHtml from "./projects.html";
+import modsHtml from "./mods.html";
+import printsHtml from "./prints.html";
 import cssContent from "./style.css";
 
 addEventListener("fetch", (event) => {
   event.respondWith(handle(event.request));
 });
 
+function renderPage(html) {
+  return html.replace(/<\/head>/i, `<style>${cssContent}</style></head>`);
+}
+
+function normalizePath(pathname) {
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    return pathname.slice(0, -1);
+  }
+  return pathname;
+}
+
 async function handle(request) {
   const url = new URL(request.url);
 
-  // Serve CSS directly if requested (optional but useful)
   if (url.pathname === "/style.css") {
     return new Response(cssContent, {
       headers: {
@@ -18,11 +32,27 @@ async function handle(request) {
     });
   }
 
-  // Inject CSS into <head> regardless of whether a <link> exists
-  const html =
-    htmlContent.replace(/<\/head>/i, `<style>${cssContent}</style></head>`);
+  const routes = {
+    "/": homeHtml,
+    "/editorials": editorialsHtml,
+    "/editorals": editorialsHtml,
+    "/projects": projectsHtml,
+    "/mods": modsHtml,
+    "/prints": printsHtml,
+  };
 
-  return new Response(html, {
+  const pageHtml = routes[normalizePath(url.pathname)];
+
+  if (!pageHtml) {
+    return new Response("Not Found", {
+      status: 404,
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+      },
+    });
+  }
+
+  return new Response(renderPage(pageHtml), {
     headers: {
       "Content-Type": "text/html; charset=utf-8",
       "Cache-Control": "no-store",
