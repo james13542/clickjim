@@ -5,7 +5,7 @@
     --text-main: #1f2937;
     --text-muted: #4b5563;
     --surface: #ffffff;
-    --surface-bg: #0a2018;
+    --surface-bg: #eef2f7;
 }
 
 * {
@@ -21,78 +21,12 @@ body {
     color: var(--text-main);
     display: flex;
     flex-direction: column;
-    position: relative;
-    overflow-x: hidden;
-}
-
-.pattern-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(74, 222, 128, 0.45), transparent 42%),
-        radial-gradient(circle at 75% 35%, rgba(22, 163, 74, 0.45), transparent 48%),
-        radial-gradient(circle at 60% 85%, rgba(134, 239, 172, 0.35), transparent 45%),
-        repeating-linear-gradient(45deg, rgba(52, 211, 153, 0.12) 0 2px, transparent 2px 16px),
-        #082019;
-    background-size: 180% 180%, 160% 160%, 140% 140%, 100% 100%, 100% 100%;
-    animation: flowPattern 16s ease-in-out infinite alternate;
-}
-
-@keyframes flowPattern {
-    0% {
-        background-position: 0% 0%, 100% 0%, 50% 100%, 0 0, 0 0;
-        filter: hue-rotate(0deg);
-    }
-    100% {
-        background-position: 100% 100%, 0% 100%, 40% 0%, 80px 80px, 0 0;
-        filter: hue-rotate(12deg);
-    }
-}
-
-nav,
-.container,
-.business-banner {
-    position: relative;
-    z-index: 1;
 }
 
 nav {
-    background-color: rgba(16, 24, 39, 0.9);
+    background-color: var(--brand-dark);
     padding: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(4px);
-}
-
-.nav-inner {
-    width: min(980px, calc(100% - 16px));
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.home-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-    padding: 6px 10px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.home-button:hover {
-    background: rgba(255, 255, 255, 0.18);
-}
-
-.home-icon {
-    width: 64px;
-    height: 32px;
-    display: block;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown {
@@ -118,7 +52,7 @@ nav {
 .dropdown-content {
     display: none;
     position: absolute;
-    right: 0;
+    left: 0;
     background-color: var(--brand-dark-2);
     min-width: 190px;
     border-radius: 8px;
@@ -147,12 +81,12 @@ nav {
 
 .container {
     flex: 1;
-    width: min(860px, calc(100% - 28px));
+    max-width: 860px;
     margin: 48px auto;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--surface);
     padding: 32px;
     border-radius: 14px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 h1 {
@@ -188,19 +122,4 @@ p {
 
 .business-banner a:hover {
     text-decoration: underline;
-}
-
-@media (max-width: 640px) {
-    .home-icon {
-        width: 52px;
-        height: 26px;
-    }
-
-    .home-button span {
-        font-size: 14px;
-    }
-
-    .container {
-        padding: 24px;
-    }
 }
