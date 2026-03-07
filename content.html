@@ -2,193 +2,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClickJim | Creative & Technical Portfolio</title>
-    <!-- Stylesheet reference removed; CSS will be inlined by the Worker. -->
+    <title>{{PAGE_TITLE}} | ClickJim</title>
 </head>
 <body>
     <nav>
         <ul class="dropdown">
-            <li>
-                <a href="/">Menu ▼</a>
+            <li><a href="#" aria-label="Open navigation menu">Menu ▼</a>
                 <ul class="dropdown-content">
-                    <li class="submenu">
-                        <a href="/editorial">Editorial</a>
-                        <ul class="submenu-content">
-                            <li><a href="/editorial/ai-embedded">AI & Embedded Systems</a></li>
-                            <li><a href="/editorial/performance-tech">Performance Tech</a></li>
-                        </ul>
-                    </li>
-                    <li class="submenu">
-                        <a href="/projects">Projects</a>
-                        <ul class="submenu-content">
-                            <li><a href="/projects/rust-card-game">Rust Card Game</a></li>
-                            <li><a href="/projects/networking-lab">Networking Lab</a></li>
-                        </ul>
-                    </li>
-                    <li class="submenu">
-                        <a href="/mods">Mods</a>
-                        <ul class="submenu-content">
-                            <li><a href="/mods/miata-turbo">Miata Turbo Build</a></li>
-                            <li><a href="/mods/frs-hybrid">FR-S Hybrid Assist</a></li>
-                        </ul>
-                    </li>
-                    <li class="submenu">
-                        <a href="/prints">Prints</a>
-                        <ul class="submenu-content">
-                            <li><a href="/prints/mechanical-designs">Mechanical Designs</a></li>
-                            <li><a href="/prints/sculpture-series">Sculpture Series</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/editorial">Editorial</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/mods">Mods</a></li>
+                    <li><a href="/prints">Prints</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
 
-    <main class="container" id="app"></main>
+    <main class="container">
+        <h1>{{PAGE_TITLE}}</h1>
+        {{PAGE_CONTENT}}
+    </main>
 
     <footer class="business-banner">
-        <p>
-            ClickJim Creative Studio • Professional technical/editorial services • Contact:
-            <a href="mailto:jamesdanielwalter@outlook.com">jamesdanielwalter@outlook.com</a>
-        </p>
+        <p>ClickJim Studio • Professional Creative + Technical Services • Contact: <a href="mailto:jamesdanielwalter@outlook.com">jamesdanielwalter@outlook.com</a></p>
     </footer>
-
-    <script>
-        const pages = {
-            "/": {
-                title: "Welcome to ClickJim",
-                body: [
-                    "Professional creative and technical work spanning editorials, projects, hardware mods, and 3D print concepts.",
-                    "Use the top menu to open each main page and browse the subpages for featured work and ongoing updates."
-                ],
-                links: [
-                    { href: "/editorial", label: "Go to Editorial" },
-                    { href: "/projects", label: "Go to Projects" },
-                    { href: "/mods", label: "Go to Mods" },
-                    { href: "/prints", label: "Go to Prints" }
-                ]
-            },
-            "/editorial": {
-                title: "Editorial",
-                body: ["Long-form insights on embedded AI, systems reliability, and performance engineering."],
-                links: [
-                    { href: "/editorial/ai-embedded", label: "AI & Embedded Systems" },
-                    { href: "/editorial/performance-tech", label: "Performance Tech" }
-                ]
-            },
-            "/editorial/ai-embedded": {
-                title: "AI & Embedded Systems",
-                body: [
-                    "A practical series on deploying efficient AI models to constrained edge hardware.",
-                    "Includes profiling notes, memory optimization patterns, and reliability checklists."
-                ]
-            },
-            "/editorial/performance-tech": {
-                title: "Performance Tech",
-                body: [
-                    "Breakdowns of real-world tuning methodology from data logging to thermal management.",
-                    "Focused on engineering tradeoffs, not hype."
-                ]
-            },
-            "/projects": {
-                title: "Projects",
-                body: ["Build logs and engineering milestones from software and infrastructure projects."],
-                links: [
-                    { href: "/projects/rust-card-game", label: "Rust Card Game" },
-                    { href: "/projects/networking-lab", label: "Networking Lab" }
-                ]
-            },
-            "/projects/rust-card-game": {
-                title: "Rust Card Game",
-                body: [
-                    "A multiplayer card game architecture written in Rust with deterministic game-state syncing.",
-                    "Current focus: matchmaking flow and anti-desync validation."
-                ]
-            },
-            "/projects/networking-lab": {
-                title: "Networking Lab",
-                body: [
-                    "Hands-on diagnostics and test scenarios for routing, Wi-Fi stability, and service quality.",
-                    "Includes practical postmortems for intermittent failure patterns."
-                ]
-            },
-            "/mods": {
-                title: "Mods",
-                body: ["Vehicle and hardware modifications documented with a professional engineering lens."],
-                links: [
-                    { href: "/mods/miata-turbo", label: "Miata Turbo Build" },
-                    { href: "/mods/frs-hybrid", label: "FR-S Hybrid Assist" }
-                ]
-            },
-            "/mods/miata-turbo": {
-                title: "Miata Turbo Build",
-                body: [
-                    "A complete engine swap and turbocharging journey with reliability-first decisions.",
-                    "Covers parts strategy, fabrication notes, and tuning checkpoints."
-                ]
-            },
-            "/mods/frs-hybrid": {
-                title: "FR-S Hybrid Assist",
-                body: [
-                    "Concept development for replacing the alternator with motor-generator assist to improve MPG.",
-                    "Explores electrical integration constraints and expected gains."
-                ]
-            },
-            "/prints": {
-                title: "Prints",
-                body: ["Curated 3D print concepts designed for aesthetics, utility, and clean fabrication."],
-                links: [
-                    { href: "/prints/mechanical-designs", label: "Mechanical Designs" },
-                    { href: "/prints/sculpture-series", label: "Sculpture Series" }
-                ]
-            },
-            "/prints/mechanical-designs": {
-                title: "Mechanical Designs",
-                body: [
-                    "Functional prints including mounting brackets, cable guides, and enclosure prototypes.",
-                    "Each design balances manufacturability and durability."
-                ]
-            },
-            "/prints/sculpture-series": {
-                title: "Sculpture Series",
-                body: [
-                    "Digital sculpting studies translated into printable forms with a premium finish target.",
-                    "New releases rotate seasonally."
-                ]
-            }
-        };
-
-        function renderPage(pathname) {
-            const page = pages[pathname] || {
-                title: "Page Not Found",
-                body: ["The page you requested was not found. Use the menu to continue browsing."],
-                links: [{ href: "/", label: "Return Home" }]
-            };
-
-            const app = document.getElementById("app");
-            app.innerHTML = `
-                <h1>${page.title}</h1>
-                ${page.body.map(text => `<p>${text}</p>`).join("")}
-                <div class="link-grid">
-                    ${(page.links || []).map(link => `<a class="page-link" href="${link.href}">${link.label}</a>`).join("")}
-                </div>
-            `;
-        }
-
-        document.addEventListener("click", (event) => {
-            const link = event.target.closest("a[href]");
-            if (!link) return;
-
-            const url = new URL(link.href, window.location.origin);
-            if (url.origin !== window.location.origin) return;
-
-            event.preventDefault();
-            history.pushState({}, "", url.pathname);
-            renderPage(url.pathname);
-        });
-
-        window.addEventListener("popstate", () => renderPage(window.location.pathname));
-        renderPage(window.location.pathname);
-    </script>
 </body>
 </html>
