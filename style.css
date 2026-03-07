@@ -1,14 +1,98 @@
+:root {
+    --brand-dark: #1f2732;
+    --brand-dark-2: #2d3745;
+    --brand-accent: #2563eb;
+    --text-main: #1f2937;
+    --text-muted: #4b5563;
+    --surface: #ffffff;
+    --surface-bg: #0a2018;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    min-height: 100vh;
+    background-color: var(--surface-bg);
     text-align: center;
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.pattern-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(74, 222, 128, 0.45), transparent 42%),
+        radial-gradient(circle at 75% 35%, rgba(22, 163, 74, 0.45), transparent 48%),
+        radial-gradient(circle at 60% 85%, rgba(134, 239, 172, 0.35), transparent 45%),
+        repeating-linear-gradient(45deg, rgba(52, 211, 153, 0.12) 0 2px, transparent 2px 16px),
+        #082019;
+    background-size: 180% 180%, 160% 160%, 140% 140%, 100% 100%, 100% 100%;
+    animation: flowPattern 16s ease-in-out infinite alternate;
+}
+
+@keyframes flowPattern {
+    0% {
+        background-position: 0% 0%, 100% 0%, 50% 100%, 0 0, 0 0;
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        background-position: 100% 100%, 0% 100%, 40% 0%, 80px 80px, 0 0;
+        filter: hue-rotate(12deg);
+    }
+}
+
+nav,
+.container,
+.business-banner {
+    position: relative;
+    z-index: 1;
 }
 
 nav {
-    background-color: #333;
-    padding: 10px;
+    background-color: rgba(16, 24, 39, 0.9);
+    padding: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+}
+
+.nav-inner {
+    width: min(980px, calc(100% - 16px));
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.home-button:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.home-icon {
+    width: 64px;
+    height: 32px;
+    display: block;
 }
 
 .dropdown {
@@ -26,6 +110,7 @@ nav {
 .dropdown a {
     text-decoration: none;
     color: white;
+    font-weight: 600;
     padding: 10px 20px;
     display: block;
 }
@@ -33,9 +118,12 @@ nav {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #444;
-    min-width: 150px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    right: 0;
+    background-color: var(--brand-dark-2);
+    min-width: 190px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -44,9 +132,13 @@ nav {
 }
 
 .dropdown-content a {
-    padding: 10px;
+    padding: 12px;
     color: white;
-    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--brand-accent);
 }
 
 .dropdown li:hover .dropdown-content {
@@ -54,20 +146,61 @@ nav {
 }
 
 .container {
-    max-width: 800px;
-    margin: 50px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    width: min(860px, calc(100% - 28px));
+    margin: 48px auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 32px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 h1 {
-    color: #333;
+    color: #111827;
+    margin-top: 0;
 }
 
 p {
-    color: #667;
+    color: var(--text-muted);
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.7;
+}
+
+.business-banner {
+    background: linear-gradient(90deg, var(--brand-dark), #0f172a);
+    color: #e5e7eb;
+    padding: 16px 20px;
+    font-size: 15px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.business-banner p {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+}
+
+.business-banner a {
+    color: #93c5fd;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.business-banner a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .home-icon {
+        width: 52px;
+        height: 26px;
+    }
+
+    .home-button span {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 24px;
+    }
 }
