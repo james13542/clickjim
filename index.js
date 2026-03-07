@@ -44,43 +44,14 @@ const pages = {
   },
 };
 
-const aliases = {
-  "/home": "/",
-  "/index.html": "/",
-  "/editorials": "/editorial",
-  "/project": "/projects",
-  "/mod": "/mods",
-  "/print": "/prints",
-};
-
-function normalizePath(pathname) {
-  let path = pathname || "/";
-
-  try {
-    path = decodeURIComponent(path);
-  } catch (_error) {
-    // Keep original path if it cannot be decoded.
-  }
-
-  path = path.toLowerCase();
-
-  if (path.length > 1 && path.endsWith("/")) {
-    path = path.replace(/\/+$/, "");
-  }
-
-  return aliases[path] || path;
-}
-
 function renderPage(pathname) {
-  const normalizedPath = normalizePath(pathname);
-  const page = pages[normalizedPath];
+  const page = pages[pathname];
 
   if (!page) {
     return {
       status: 404,
       title: "Page Not Found",
-      content:
-        "<p>Sorry, that page does not exist. Please use the menu to navigate to an available page.</p>",
+      content: "<p>Sorry, that page does not exist. Please use the menu to navigate to an available page.</p>",
     };
   }
 
@@ -94,15 +65,6 @@ async function handle(request) {
     return new Response(cssContent, {
       headers: {
         "Content-Type": "text/css; charset=utf-8",
-        "Cache-Control": "public, max-age=3600",
-      },
-    });
-  }
-
-  if (url.pathname === "/home-icon.svg") {
-    return new Response(homeIconSvg, {
-      headers: {
-        "Content-Type": "image/svg+xml; charset=utf-8",
         "Cache-Control": "public, max-age=3600",
       },
     });
