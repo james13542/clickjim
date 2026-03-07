@@ -1,5 +1,6 @@
 import htmlContent from "./content.html";
 import cssContent from "./style.css";
+import homeIconSvg from "./home-icon.svg";
 
 addEventListener("fetch", (event) => {
   event.respondWith(handle(event.request));

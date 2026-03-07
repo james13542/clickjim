@@ -75,7 +75,12 @@ nav {
     background-color: var(--brand-accent);
 }
 
-.dropdown li:hover .dropdown-content {
+.dropdown-content a:hover {
+    background-color: var(--brand-accent);
+}
+
+.dropdown li:hover .dropdown-content,
+.dropdown li:focus-within .dropdown-content {
     display: block;
 }
 
