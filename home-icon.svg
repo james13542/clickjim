@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1126 636" role="img" aria-label="Computer tower and monitor with chip icon">
+  <rect width="1126" height="636" fill="#efefef"/>
+
+  <!-- Tower -->
+  <rect x="58" y="65" width="290" height="520" rx="34" fill="#0f1114"/>
+  <rect x="95" y="140" width="215" height="34" rx="9" fill="#efefef"/>
+  <rect x="95" y="205" width="215" height="34" rx="9" fill="#efefef"/>
+  <circle cx="203" cy="402" r="24" fill="#efefef"/>
+  <rect x="170" y="500" width="66" height="20" rx="10" fill="#efefef"/>
+
+  <!-- Monitor frame -->
+  <rect x="420" y="55" width="640" height="430" rx="36" fill="#0f1114"/>
+  <rect x="454" y="88" width="572" height="360" rx="18" fill="#efefef"/>
+
+  <!-- Chip body -->
+  <rect x="634" y="190" width="212" height="212" rx="36" fill="#0f1114"/>
+  <rect x="675" y="231" width="130" height="130" rx="12" fill="#efefef"/>
+  <rect x="709" y="265" width="62" height="62" rx="6" fill="#0f1114"/>
+
+  <!-- Chip pins top -->
+  <rect x="658" y="140" width="22" height="58" rx="11" fill="#0f1114"/>
+  <rect x="709" y="140" width="22" height="58" rx="11" fill="#0f1114"/>
+  <rect x="760" y="140" width="22" height="58" rx="11" fill="#0f1114"/>
+  <rect x="811" y="140" width="22" height="58" rx="11" fill="#0f1114"/>
+
+  <!-- Chip pins bottom -->
+  <rect x="658" y="394" width="22" height="58" rx="11" fill="#0f1114"/>
+  <rect x="709" y="394" width="22" height="58" rx="11" fill="#0f1114"/>
+  <rect x="760" y="394" width="22" height="58" rx="11" fill="#0f1114"/>
+  <rect x="811" y="394" width="22" height="58" rx="11" fill="#0f1114"/>
+
+  <!-- Chip pins left -->
+  <rect x="572" y="214" width="58" height="20" rx="10" fill="#0f1114"/>
+  <rect x="572" y="262" width="58" height="20" rx="10" fill="#0f1114"/>
+  <rect x="572" y="310" width="58" height="20" rx="10" fill="#0f1114"/>
+  <rect x="572" y="358" width="58" height="20" rx="10" fill="#0f1114"/>
+
+  <!-- Chip pins right -->
+  <rect x="850" y="214" width="58" height="20" rx="10" fill="#0f1114"/>
+  <rect x="850" y="262" width="58" height="20" rx="10" fill="#0f1114"/>
+  <rect x="850" y="310" width="58" height="20" rx="10" fill="#0f1114"/>
+  <rect x="850" y="358" width="58" height="20" rx="10" fill="#0f1114"/>
+
+  <!-- Monitor stand -->
+  <path d="M710 486h68v74h-68z" fill="#0f1114"/>
+  <rect x="580" y="560" width="328" height="40" rx="20" fill="#0f1114"/>
+</svg>
