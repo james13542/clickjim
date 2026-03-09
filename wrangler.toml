@@ -3,7 +3,19 @@ main  = "dist/index.js"
 route = "clickjim.com/*"
 workers_dev = true
 compatibility_date = "2026-01-09"
-# other configuration options…
+
+[vars]
+AUTH_DEMO_EMAIL = "demo@clickjim.com"
+AUTH_DEMO_PASSWORD = "change-me"
+SESSION_SECRET = "change-this-in-production"
+
+[[durable_objects.bindings]]
+name = "AUTH_SESSION_DO"
+class_name = "AuthSessionDO"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["AuthSessionDO"]
 
 [build]
 command = "npm install && npm run build"
