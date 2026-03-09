@@ -3,7 +3,7 @@ main  = "dist/index.js"
 route = "clickjim.com/*"
 workers_dev = true
 compatibility_date = "2026-01-09"
-
+# here
 [vars]
 AUTH_DEMO_EMAIL = "demo@clickjim.com"
 AUTH_DEMO_PASSWORD = "change-me"
