@@ -1,5 +1,4 @@
 name  = "worker1"
-main  = "dist/index.js"
 route = "clickjim.com/*"
 workers_dev = true
 compatibility_date = "2026-01-09"
@@ -19,3 +18,8 @@ new_sqlite_classes = ["AuthSessionDO"]
 
 [build]
 command = "npm install && npm run build"
+
+[build.upload]
+format = "modules"
+dir = "dist"
+main = "index.js"
