@@ -11,8 +11,8 @@ const pages = {
       <p>Hi, I'm James — a tech enthusiast with experience in computer hardware engineering and IT support, specializing in networking problem-solving.</p>
       <p>Explore the work categories in the top menu to browse dedicated pages for Editorial, Projects, Mods, and Prints.</p>
       <section class="auth-card" aria-labelledby="auth-title">
-        <h2 id="auth-title">Client Login</h2>
-        <p class="auth-note">Admin login (Try to break in please).</p>
+        <h2 id="auth-title">Admin Login</h2>
+        <p class="auth-note">(Try to break in please).</p>
         <form id="login-form" class="auth-form" autocomplete="on">
           <label for="email">Email</label>
           <input id="email" name="email" type="email" required placeholder="name@example.com" />
