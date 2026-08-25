@@ -12,7 +12,7 @@ const pages = {
       <p>Explore the work categories in the top menu to browse dedicated pages for Editorial, Projects, Mods, and Prints.</p>
       <section class="auth-card" aria-labelledby="auth-title">
         <h2 id="auth-title">Client Login</h2>
-        <p class="auth-note">Use this demo login wired to Durable Object-backed sessions.</p>
+        <p class="auth-note">Admin login (Try to break in please).</p>
         <form id="login-form" class="auth-form" autocomplete="on">
           <label for="email">Email</label>
           <input id="email" name="email" type="email" required placeholder="name@example.com" />
