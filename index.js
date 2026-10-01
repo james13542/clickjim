@@ -1,5 +1,7 @@
 import htmlContent from "./content.html";
 import cssContent from "./style.css";
+import { handleProjectAudio } from "./project-audio.js";
+import { projectAudioMarkup, projectAudioScript } from "./project-audio-ui.js";
 
 const SESSION_COOKIE = "cj_session";
 const SESSION_TTL_SECONDS = 60 * 60 * 24;
@@ -37,6 +39,7 @@ const pages = {
     content: `
       <p>This page showcases active and completed project work, from embedded and systems concepts to software prototypes.</p>
       <p>Expect progress logs, outcomes, and lessons learned from each build.</p>
+      ${projectAudioMarkup}
     `,
   },
   "/mods": {
@@ -78,6 +81,10 @@ function renderPage(pathname) {
 async function handleRequest(request, env) {
   const url = new URL(request.url);
 
+  if (url.pathname === "/api/projects/audio" || url.pathname.startsWith("/api/projects/audio/")) {
+    return handleProjectAudio(request, env, handleSession);
+  }
+
   if (request.method === "POST" && url.pathname === "/api/auth/login") {
     return handleLogin(request, env);
   }
@@ -100,7 +107,8 @@ async function handleRequest(request, env) {
   }
 
   const page = renderPage(url.pathname);
-  const script = url.pathname === "/" ? homepageAuthScript() : "";
+  const script = url.pathname === "/" ? homepageAuthScript() :
+    url.pathname === "/projects" ? projectAudioScript() : "";
 
   const html = htmlContent
     .replace(/{{PAGE_TITLE}}/g, page.title)
@@ -311,6 +319,15 @@ async function signSessionToken(payload, secret) {
 }
 
 async function verifySessionToken(token, secret) {
+  try {
+    return await decodeSessionToken(token, secret);
+  } catch {
+    return null;
+  }
+}
+
+async function decodeSessionToken(token, secret) {
+  if (token.split(".").length !== 2) return null;
   const [payloadB64, signatureB64] = token.split(".");
   if (!payloadB64 || !signatureB64) return null;
 
@@ -330,7 +347,10 @@ async function verifySessionToken(token, secret) {
   if (!isValid) return null;
 
   try {
-    return JSON.parse(message);
+    const payload = JSON.parse(message);
+    if (typeof payload?.userId !== "string" || !payload.userId ||
+        typeof payload?.sessionId !== "string" || !payload.sessionId) return null;
+    return payload;
   } catch {
     return null;
   }
