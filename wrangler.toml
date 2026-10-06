@@ -6,8 +6,11 @@ compatibility_date = "2026-01-09"
 # here
 [vars]
 AUTH_DEMO_EMAIL = "demo@clickjim.com"
-AUTH_DEMO_PASSWORD = "change-me"
-SESSION_SECRET = "change-this-in-production"
+# Set AUTH_DEMO_PASSWORD and SESSION_SECRET with `wrangler secret put`.
+
+[[r2_buckets]]
+binding = "PROJECT_AUDIO"
+bucket_name = "clickjim-project-audio"
 
 [[durable_objects.bindings]]
 name = "AUTH_SESSION_DO"
