@@ -4,6 +4,61 @@ var content_default = '<html lang="en">\n<head>\n    <meta charset="UTF-8">\n   
 // style.css
 var style_default = ":root {\n    --brand-dark: #1f2732;\n    --brand-dark-2: #2d3745;\n    --brand-accent: #2563eb;\n    --text-main: #1f2937;\n    --text-muted: #4b5563;\n    --surface: #ffffff;\n    --surface-bg: #eef2f7;\n}\n\n* {\n    box-sizing: border-box;\n}\n\nbody {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    min-height: 100vh;\n    background-color: var(--surface-bg);\n    text-align: center;\n    color: var(--text-main);\n    display: flex;\n    flex-direction: column;\n}\n\nnav {\n    background-color: var(--brand-dark);\n    padding: 12px;\n    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n}\n\n.dropdown {\n    list-style-type: none;\n    padding: 0;\n    margin: 0;\n    display: inline-block;\n}\n\n.dropdown li {\n    position: relative;\n    display: inline-block;\n}\n\n.dropdown a {\n    text-decoration: none;\n    color: white;\n    font-weight: 600;\n    padding: 10px 20px;\n    display: block;\n}\n\n.dropdown-content {\n    display: none;\n    position: absolute;\n    left: 0;\n    background-color: var(--brand-dark-2);\n    min-width: 190px;\n    border-radius: 8px;\n    overflow: hidden;\n    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);\n    z-index: 1;\n}\n\n.dropdown-content li {\n    display: block;\n}\n\n.dropdown-content a {\n    padding: 12px;\n    color: white;\n    text-align: left;\n}\n\n.dropdown-content a:hover {\n    background-color: var(--brand-accent);\n}\n\n.dropdown-content a:hover {\n    background-color: var(--brand-accent);\n}\n\n.dropdown li:hover .dropdown-content,\n.dropdown li:focus-within .dropdown-content {\n    display: block;\n}\n\n.container {\n    flex: 1;\n    max-width: 860px;\n    margin: 48px auto;\n    background: var(--surface);\n    padding: 32px;\n    border-radius: 14px;\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);\n}\n\nh1 {\n    color: #111827;\n    margin-top: 0;\n}\n\np {\n    color: var(--text-muted);\n    font-size: 18px;\n    line-height: 1.7;\n}\n\n.business-banner {\n    background: linear-gradient(90deg, var(--brand-dark), #0f172a);\n    color: #e5e7eb;\n    padding: 16px 20px;\n    font-size: 15px;\n    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);\n}\n\n.business-banner p {\n    margin: 0;\n    color: inherit;\n    font-size: inherit;\n}\n\n.business-banner a {\n    color: #93c5fd;\n    text-decoration: none;\n    font-weight: 700;\n}\n\n.business-banner a:hover {\n    text-decoration: underline;\n}\n\n.auth-card {\n    margin-top: 28px;\n    border: 1px solid #dbe4f0;\n    border-radius: 12px;\n    padding: 20px;\n    text-align: left;\n    background: #f8fbff;\n}\n\n.auth-card h2 {\n    margin-top: 0;\n}\n\n.auth-note {\n    margin-top: 0;\n    font-size: 15px;\n}\n\n.auth-form {\n    display: grid;\n    gap: 10px;\n}\n\n.auth-form input {\n    width: 100%;\n    padding: 10px;\n    border: 1px solid #cbd5e1;\n    border-radius: 8px;\n}\n\n.auth-form button,\n.auth-logout {\n    margin-top: 8px;\n    border: none;\n    background: var(--brand-accent);\n    color: white;\n    padding: 10px 14px;\n    border-radius: 8px;\n    cursor: pointer;\n    font-weight: 600;\n    width: fit-content;\n}\n\n.auth-status {\n    margin-bottom: 0;\n    font-size: 15px;\n}\n\n.project-audio {\n    margin-top: 28px;\n    text-align: left;\n}\n\n.project-audio [hidden] {\n    display: none;\n}\n\n.audio-note {\n    font-size: 15px;\n    overflow-wrap: anywhere;\n}\n\n.audio-upload-form,\n.audio-card {\n    border: 1px solid #dbe4f0;\n    border-radius: 12px;\n    padding: 20px;\n    background: #f8fbff;\n    min-width: 0;\n}\n\n.audio-upload-form {\n    display: grid;\n    gap: 10px;\n}\n\n.audio-upload-form input {\n    width: 100%;\n    min-width: 0;\n    padding: 10px;\n    border: 1px solid #cbd5e1;\n    border-radius: 8px;\n    background: white;\n    font: inherit;\n}\n\n.audio-upload-form button,\n.audio-button {\n    border: none;\n    background: var(--brand-accent);\n    color: white;\n    padding: 10px 14px;\n    border-radius: 8px;\n    cursor: pointer;\n    font: inherit;\n    font-weight: 600;\n    width: fit-content;\n}\n\n.audio-upload-form button:disabled,\n.audio-button:disabled {\n    cursor: wait;\n    opacity: 0.6;\n}\n\n.audio-list {\n    display: grid;\n    gap: 16px;\n}\n\n.audio-card h3 {\n    margin: 0;\n    overflow-wrap: anywhere;\n}\n\n.audio-card audio {\n    display: block;\n    width: 100%;\n    margin: 16px 0;\n}\n\n.audio-actions {\n    display: flex;\n    flex-wrap: wrap;\n    align-items: center;\n    gap: 16px;\n}\n\n.audio-actions a,\n.project-audio a {\n    color: var(--brand-accent);\n}\n\n#audio-load-more {\n    margin-top: 16px;\n}\n\n@media (max-width: 600px) {\n    .container {\n        max-width: calc(100% - 24px);\n        margin: 24px 12px;\n        padding: 20px;\n    }\n\n    .audio-upload-form,\n    .audio-card {\n        padding: 16px;\n    }\n}\n";
 
+// project-audio-home.js
+async function forwardHomeAudio(request, env) {
+  let origin;
+  try {
+    const configured = new URL(env.PROJECT_AUDIO_SERVER_URL);
+    if (configured.protocol !== "https:" || configured.username || configured.password || configured.pathname !== "/" || configured.search || configured.hash) throw new Error();
+    origin = configured.origin;
+  } catch {
+    return json({ ok: false, error: "Configure a valid HTTPS address for the home audio server." }, 503);
+  }
+  if (!env.PROJECT_AUDIO_SERVER_SECRET || env.PROJECT_AUDIO_SERVER_SECRET.length < 32) {
+    return json({ ok: false, error: "Configure the shared secret for the home audio server." }, 503);
+  }
+  const url = new URL(request.url);
+  const target = origin + url.pathname + url.search;
+  if (url.pathname !== "/api/projects/audio" && ["GET", "HEAD"].includes(request.method)) {
+    return new Response(null, { status: 307, headers: { Location: target, "Cache-Control": "no-store" } });
+  }
+  const headers = new Headers({
+    Authorization: "Bearer " + env.PROJECT_AUDIO_SERVER_SECRET,
+    Origin: origin
+  });
+  const contentType = request.headers.get("Content-Type");
+  if (contentType) headers.set("Content-Type", contentType);
+  const length = request.headers.get("Content-Length");
+  if (length) headers.set("Content-Length", length);
+  try {
+    const upstream = await fetch(new Request(target, {
+      method: request.method,
+      headers,
+      body: request.method === "POST" ? request.body : void 0,
+      duplex: "half",
+      redirect: "manual",
+      signal: AbortSignal.timeout(12e4)
+    }));
+    if (upstream.status >= 300 && upstream.status < 400) throw new Error("Unexpected redirect");
+    if ([401, 403].includes(upstream.status)) {
+      return json({ ok: false, error: "The home audio server's shared secret does not match." }, 503);
+    }
+    const data = await upstream.json();
+    const publicFile = (file) => ({ ...file, url: origin + "/api/projects/audio/" + encodeURIComponent(file.id) });
+    if (Array.isArray(data.files)) data.files = data.files.map(publicFile);
+    if (data.file) data.file = publicFile(data.file);
+    return json(data, upstream.status);
+  } catch {
+    return json({ ok: false, error: "The home audio server is unavailable. Please try again later." }, 503);
+  }
+}
+function json(data, status) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
+  });
+}
+
 // project-audio.js
 var AUDIO_PATH = "/api/projects/audio";
 var AUDIO_PREFIX = "projects/audio/";
@@ -21,11 +76,11 @@ async function handleProjectAudio(request, env, authenticate) {
   const collection = url.pathname === AUDIO_PATH;
   const filename = url.pathname.slice(AUDIO_PATH.length + 1);
   if (!collection && !AUDIO_ID.test(filename)) {
-    return json({ ok: false, error: "Audio file not found." }, 404);
+    return json2({ ok: false, error: "Audio file not found." }, 404);
   }
   const allowed = collection ? ["GET", "POST"] : ["GET", "HEAD", "DELETE"];
   if (!allowed.includes(request.method)) {
-    return json({ ok: false, error: "Method not allowed." }, 405, { Allow: allowed.join(", ") });
+    return json2({ ok: false, error: "Method not allowed." }, 405, { Allow: allowed.join(", ") });
   }
   try {
     if (request.method === "POST" || request.method === "DELETE") {
@@ -39,6 +94,9 @@ async function handleProjectAudio(request, env, authenticate) {
       if (!env.AUTH_DEMO_PASSWORD || env.AUTH_DEMO_PASSWORD === "change-me" || !env.SESSION_SECRET || ["development-secret", "change-this-in-production"].includes(env.SESSION_SECRET)) {
         throw new AudioRequestError("Audio uploads require a configured admin password and session secret.", 503);
       }
+    }
+    if (env.PROJECT_AUDIO_SERVER_URL) {
+      return forwardHomeAudio(request, env);
     }
     if (!env.PROJECT_AUDIO) {
       throw new AudioRequestError("Project audio storage is not configured yet.", 503);
@@ -54,7 +112,7 @@ async function handleProjectAudio(request, env, authenticate) {
         include: ["customMetadata"],
         cursor
       });
-      return json({
+      return json2({
         ok: true,
         files: result.objects.filter((object) => AUDIO_ID.test(object.key.slice(AUDIO_PREFIX.length))).map(audioDetails),
         cursor: result.truncated ? result.cursor : null
@@ -67,15 +125,15 @@ async function handleProjectAudio(request, env, authenticate) {
         throw new AudioRequestError("Audio file not found.", 404);
       }
       await env.PROJECT_AUDIO.delete(key);
-      return json({ ok: true });
+      return json2({ ok: true });
     }
     return await serveAudio(request, env.PROJECT_AUDIO, key);
   } catch (error) {
     if (error instanceof AudioRequestError) {
-      return json({ ok: false, error: error.message }, error.status);
+      return json2({ ok: false, error: error.message }, error.status);
     }
     console.error("Project audio request failed:", error);
-    return json({ ok: false, error: "Unable to access project audio. Please try again." }, 500);
+    return json2({ ok: false, error: "Unable to access project audio. Please try again." }, 500);
   }
 }
 async function uploadAudio(request, bucket) {
@@ -139,7 +197,7 @@ async function uploadAudio(request, bucket) {
     httpMetadata: { contentType: "audio/mpeg" },
     customMetadata: { title, filename: originalName }
   });
-  return json({ ok: true, file: audioDetails(object) }, 201);
+  return json2({ ok: true, file: audioDetails(object) }, 201);
 }
 function audioDetails(object) {
   const id = object.key.slice(AUDIO_PREFIX.length);
@@ -202,7 +260,7 @@ function parseRange(value, size) {
   }
   return { offset: start, length: end - start + 1 };
 }
-function json(payload, status = 200, extraHeaders = {}) {
+function json2(payload, status = 200, extraHeaders = {}) {
   return new Response(JSON.stringify(payload), {
     status,
     headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...extraHeaders }
@@ -292,7 +350,7 @@ function initProjectAudio() {
       if (!window.confirm('Remove "' + file.title + '" from project audio?')) return;
       remove.disabled = true;
       try {
-        await requestJson(file.url, { method: "DELETE" });
+        await requestJson("/api/projects/audio/" + encodeURIComponent(file.id), { method: "DELETE" });
         player.pause();
         player.removeAttribute("src");
         player.load();
@@ -469,17 +527,17 @@ async function handleLogin(request, env) {
   try {
     payload = await request.json();
   } catch {
-    return json2({ ok: false, error: "Invalid request payload." }, 400);
+    return json3({ ok: false, error: "Invalid request payload." }, 400);
   }
   const email = String(payload?.email || "").trim().toLowerCase();
   const password = String(payload?.password || "");
   if (!email || !password) {
-    return json2({ ok: false, error: "Email and password are required." }, 400);
+    return json3({ ok: false, error: "Email and password are required." }, 400);
   }
   const allowedEmail = (env.AUTH_DEMO_EMAIL || "demo@clickjim.com").toLowerCase();
   const allowedPassword = env.AUTH_DEMO_PASSWORD || "change-me";
   if (email !== allowedEmail || password !== allowedPassword) {
-    return json2({ ok: false, error: "Invalid credentials." }, 401);
+    return json3({ ok: false, error: "Invalid credentials." }, 401);
   }
   const userId = `demo:${email}`;
   const sessionId = crypto.randomUUID();
@@ -491,10 +549,10 @@ async function handleLogin(request, env) {
     body: JSON.stringify({ sessionId, userId, ttlSeconds: SESSION_TTL_SECONDS })
   });
   if (!createRes.ok) {
-    return json2({ ok: false, error: "Unable to create session." }, 500);
+    return json3({ ok: false, error: "Unable to create session." }, 500);
   }
   const token = await signSessionToken({ userId, sessionId }, env.SESSION_SECRET || "development-secret");
-  return json2(
+  return json3(
     { ok: true, user: { email } },
     200,
     {
@@ -511,11 +569,11 @@ async function handleLogin(request, env) {
 async function handleSession(request, env) {
   const token = parseCookies(request.headers.get("Cookie") || "")[SESSION_COOKIE];
   if (!token) {
-    return json2({ ok: true, authenticated: false });
+    return json3({ ok: true, authenticated: false });
   }
   const parsed = await verifySessionToken(token, env.SESSION_SECRET || "development-secret");
   if (!parsed) {
-    return json2({ ok: true, authenticated: false }, 200, { "Set-Cookie": clearSessionCookie() });
+    return json3({ ok: true, authenticated: false }, 200, { "Set-Cookie": clearSessionCookie() });
   }
   const shard = env.AUTH_SESSION_DO.idFromName(parsed.userId);
   const stub = env.AUTH_SESSION_DO.get(shard);
@@ -525,9 +583,9 @@ async function handleSession(request, env) {
     body: JSON.stringify({ sessionId: parsed.sessionId })
   });
   if (!validRes.ok) {
-    return json2({ ok: true, authenticated: false }, 200, { "Set-Cookie": clearSessionCookie() });
+    return json3({ ok: true, authenticated: false }, 200, { "Set-Cookie": clearSessionCookie() });
   }
-  return json2({ ok: true, authenticated: true, user: { email: parsed.userId.replace("demo:", "") } });
+  return json3({ ok: true, authenticated: true, user: { email: parsed.userId.replace("demo:", "") } });
 }
 async function handleLogout(request, env) {
   const token = parseCookies(request.headers.get("Cookie") || "")[SESSION_COOKIE];
@@ -543,7 +601,7 @@ async function handleLogout(request, env) {
       });
     }
   }
-  return json2({ ok: true }, 200, { "Set-Cookie": clearSessionCookie() });
+  return json3({ ok: true }, 200, { "Set-Cookie": clearSessionCookie() });
 }
 var AuthSessionDO = class {
   constructor(state) {
@@ -561,24 +619,24 @@ var AuthSessionDO = class {
         userId: body.userId,
         expiresAt
       });
-      return json2({ ok: true });
+      return json3({ ok: true });
     }
     if (url.pathname === "/validate") {
       const session = await this.state.storage.get(`session:${body.sessionId}`);
       if (!session || session.expiresAt <= Date.now()) {
         if (session) await this.state.storage.delete(`session:${body.sessionId}`);
-        return json2({ ok: false }, 401);
+        return json3({ ok: false }, 401);
       }
-      return json2({ ok: true });
+      return json3({ ok: true });
     }
     if (url.pathname === "/revoke") {
       await this.state.storage.delete(`session:${body.sessionId}`);
-      return json2({ ok: true });
+      return json3({ ok: true });
     }
     return new Response("Not Found", { status: 404 });
   }
 };
-function json2(payload, status = 200, extraHeaders = {}) {
+function json3(payload, status = 200, extraHeaders = {}) {
   return new Response(JSON.stringify(payload), {
     status,
     headers: {
