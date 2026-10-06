@@ -7,10 +7,8 @@ compatibility_date = "2026-01-09"
 [vars]
 AUTH_DEMO_EMAIL = "demo@clickjim.com"
 # Set AUTH_DEMO_PASSWORD and SESSION_SECRET with `wrangler secret put`.
-
-[[r2_buckets]]
-binding = "PROJECT_AUDIO"
-bucket_name = "clickjim-project-audio"
+PROJECT_AUDIO_SERVER_URL = "https://audio.clickjim.com"
+# Set PROJECT_AUDIO_SERVER_SECRET to the same secret as the home server.
 
 [[durable_objects.bindings]]
 name = "AUTH_SESSION_DO"

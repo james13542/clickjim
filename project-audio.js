@@ -1,3 +1,5 @@
+import { forwardHomeAudio } from "./project-audio-home.js";
+
 const AUDIO_PATH = "/api/projects/audio";
 const AUDIO_PREFIX = "projects/audio/";
 const MAX_AUDIO_BYTES = 25 * 1024 * 1024;
@@ -37,6 +39,10 @@ export async function handleProjectAudio(request, env, authenticate) {
           !env.SESSION_SECRET || ["development-secret", "change-this-in-production"].includes(env.SESSION_SECRET)) {
         throw new AudioRequestError("Audio uploads require a configured admin password and session secret.", 503);
       }
+    }
+
+    if (env.PROJECT_AUDIO_SERVER_URL) {
+      return forwardHomeAudio(request, env);
     }
 
     if (!env.PROJECT_AUDIO) {

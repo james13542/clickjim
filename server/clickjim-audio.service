@@ -1,0 +1,21 @@
+[Unit]
+Description=Clickjim project audio server
+After=network.target
+
+[Service]
+Type=simple
+User=clickjim-audio
+Group=clickjim-audio
+WorkingDirectory=/opt/clickjim
+ExecStart=/usr/bin/node /opt/clickjim/server/homelab.mjs
+EnvironmentFile=/etc/clickjim-audio.env
+StateDirectory=clickjim-audio
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

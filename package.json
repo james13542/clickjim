@@ -1,9 +1,11 @@
 {
   "name": "worker1",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "build": "esbuild index.js --bundle --format=esm --loader:.css=text --loader:.html=text --loader:.svg=text --outfile=dist/index.js",
-    "test": "npm run build && node --test tests/project-audio.test.mjs"
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "start:audio": "node server/homelab.mjs"
   },
   "dependencies": {
     "esbuild": "^0.27.2"

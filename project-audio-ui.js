@@ -83,7 +83,7 @@ function initProjectAudio() {
       if (!window.confirm('Remove "' + file.title + '" from project audio?')) return;
       remove.disabled = true;
       try {
-        await requestJson(file.url, { method: "DELETE" });
+        await requestJson("/api/projects/audio/" + encodeURIComponent(file.id), { method: "DELETE" });
         player.pause();
         player.removeAttribute("src");
         player.load();
